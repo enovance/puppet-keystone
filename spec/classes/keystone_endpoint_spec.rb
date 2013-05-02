@@ -56,6 +56,42 @@ describe 'keystone::endpoint' do
 
   end
 
+  describe 'with overriden public and private paths' do
+
+    let :params do
+      {
+        :public_path => '/keystone/main/',
+        :admin_path  => '/keystone/admin/',
+      }
+    end
+
+    it { should contain_keystone_endpoint('RegionOne/keystone').with(
+      :ensure => 'present',
+      :public_url   => 'http://127.0.0.1:5000/keystone/main/v2.0',
+      :admin_url    => 'http://127.0.0.1:35357/keystone/admin/v2.0',
+      :internal_url => 'http://127.0.0.1:5000/keystone/main/v2.0'
+    )}
+
+    end
+
+  describe 'with overriden public, private and internal paths' do
+
+    let :params do
+      {
+        :public_path   => '/keystone/main/',
+        :admin_path    => '/keystone/admin/',
+        :internal_path => '/keystone/internal/',
+      }
+    end
+
+    it { should contain_keystone_endpoint('RegionOne/keystone').with(
+      :ensure => 'present',
+      :public_url   => 'http://127.0.0.1:5000/keystone/main/v2.0',
+      :admin_url    => 'http://127.0.0.1:35357/keystone/admin/v2.0',
+      :internal_url => 'http://127.0.0.1:5000/keystone/internal/v2.0'
+    )}
+
+  end
 
 
 end

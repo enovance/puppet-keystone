@@ -1,0 +1,15 @@
+WSGIScriptAlias <%= base_url %>/main  <%= scope.lookupvar('::keystone::params::keystone_wsgi_script_path') %>/main
+WSGIScriptAlias <%= base_url %>/admin  <%= scope.lookupvar('::keystone::params::keystone_wsgi_script_path') %>/admin
+
+WSGIDaemonProcess keystone user=keystone group=keystone processes=<%= processorcount %> threads=1
+WSGIProcessGroup keystone
+<% if ssl_only -%>
+
+<Location "<%= base_url %>">
+<% if osfamily == 'RedHat' -%>
+  NSSRequireSSL
+<% else -%>
+  SSLRequireSSL
+<% end -%>
+</Location>
+<% end -%>

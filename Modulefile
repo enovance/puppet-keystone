@@ -9,3 +9,4 @@ project_page 'http://github.com/puppetlabs/puppetlabs-keystone'
 
 dependency 'cprice404/inifile', '>= 0.10.0'
 dependency 'puppetlabs/mysql', '>= 0.5.0'
+dependency 'puppetlabs/stdlib', '>= 3.2.0'
